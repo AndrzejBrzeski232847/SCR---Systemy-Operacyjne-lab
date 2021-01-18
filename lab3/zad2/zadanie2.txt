@@ -1,0 +1,15 @@
+Uruchamiam skrypt proces.sh w 3 terminalach, a nastepnie wykonuje polecenie
+ps -u <uzytkownik> 
+gdzie widze 3 blizniacze procesy :
+11649 pts/1    00:00:00 proces.sh
+11672 pts/2    00:00:00 proces.sh
+11722 pts/3    00:00:00 proces.sh
+
+Wykonuje w linuxie komende 
+kill 11672
+
+Otrzymuje
+11649 pts/1    00:00:00 proces.sh
+11722 pts/3    00:00:00 proces.sh
+
+Proces init nie pojawil sie na liscie procesow. 

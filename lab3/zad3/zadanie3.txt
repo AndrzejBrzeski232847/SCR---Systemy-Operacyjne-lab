@@ -1,0 +1,11 @@
+Uruchamiam skrypt proces.sh w 3 terminalach, a nastepnie wykonuje polecenie
+ps -u <uzytkownik> 
+gdzie widze 3 blizniacze procesy :
+11649 pts/1    00:00:00 proces.sh
+11672 pts/2    00:00:00 proces.sh
+11722 pts/3    00:00:00 proces.sh
+
+Podobienstwo pomiedzy procesami zachodzi bowiem zostały one uruchomione
+w podobnym czasie, z tej samej lokalizacji za pomoca tego samego skryptu,
+dzialajacego na podstawie nieskonczonej petli - proces.sh .
+Wynikowo otrzymaly one podobny numer pid oraz podobny identyfikator pts/1-3 . 

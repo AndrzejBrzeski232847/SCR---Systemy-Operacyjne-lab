@@ -1,0 +1,37 @@
+RAPORT
+
+polecenie ps -u <nazwa uzytkownika> zwraca procesy, w tym
+
+10700 pts/0    00:00:01 bash
+14905 pts/1    00:00:00 bash
+14934 pts/2    00:00:00 bash
+14956 pts/3    00:00:00 bash
+14975 pts/4    00:00:00 bash
+15142 pts/1    00:00:00 proces2.sh
+15189 pts/2    00:00:00 proces2.sh
+15232 pts/3    00:00:00 proces2.sh
+15305 pts/4    00:00:00 proces2.sh
+16173 pts/1    00:00:00 sleep
+16175 pts/4    00:00:00 sleep
+16178 pts/3    00:00:00 sleep
+16181 pts/2    00:00:00 sleep
+16182 pts/0    00:00:00 ps
+
+Natomiast filtrujac je poprzez komende 
+ps -a | sort | uniq | grep -v sh
+podaje to :
+17576 pts/2    00:00:00 sleep
+17581 pts/1    00:00:00 sleep
+17582 pts/4    00:00:00 sleep
+17585 pts/3    00:00:00 sleep
+17586 pts/0    00:00:00 ps
+17587 pts/0    00:00:00 sort
+17588 pts/0    00:00:00 uniq
+17589 pts/0    00:00:00 grep
+  PID TTY          TIME CMD
+
+Na skutek komendy sleep(1) w skrypcie proces2.sh nastepuje
+czekanie na ponowne wykonanie nieskonczonej petli.
+Podczas dzialania 4 terminali wykonujacych ten sam skrypt
+plik zadanie.txt ma dopisywana zawartosc.
+
