@@ -81,13 +81,25 @@ void *myThreadFunc(void *vargp)
    
 int main() 
 { 
-    pthread_t thread_id; 
+    pthread_t thread_id1, thread_id2; //zmienne thread_id1 i thread_id2 typu pthread_t
+    								  //tak naprawde to integery używane do identyfikowania wątków w systemie
     printf("Before Thread\n"); 
-    pthread_create(&thread_id, NULL, myThreadFunc, NULL); 
-    pthread_join(thread_id, NULL); 
 
-    wynik = myThreadFunc();
-   	printf("Obliczona liczba PI to %f",wynik);
+    printf("Przed wątkiem nr 1");	// string wypisany na ekranie przed wykonaniem wątku
+        pthread_create(&thread_id1, NULL, myThreadFunc, NULL);	//wywołanie funkcji tworzącej wątek 
+        pthread_join(thread_id1, NULL);		//funkja charakterystyczna dla wątków - odpowiednik funkcji wait()
+        									//funkcja na bazie której już zawiera wykonanie funkcji wait, lecz po stworzeniu wątku
+                                            //daję czas programowi na wykonanie instrukcji, a następnie stworzenie nowego wątku
+    printf("\nPo wątku nr 1");	// string wypisany na ekranie po wykonaniu wątku
+    
+    printf("\n");
+
+    // instrukcje analogiczne do powyższych
+    printf("Przed wątkiem nr 2");
+        pthread_create(&thread_id2, NULL, myThreadFunc, NULL); 
+        pthread_join(thread_id2, NULL); 
+    printf("\nPo wątku nr 2");
+    
 
     printf("After Thread\n"); 
     exit(0); 
